@@ -1,1 +1,1 @@
-# airport_collector
+基于Golang与Fofa开发的一款自动化收集代理节点的工具
