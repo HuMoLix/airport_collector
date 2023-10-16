@@ -140,7 +140,6 @@ func Init(Conf *common.Conf) bool {
 			os.Exit(0)
 		}
 		fmt.Println("[*]为了更好的体验，请前往 https://www.maxmind.com/ 下载 City Country ASN 数据库，并放置于" + common.GeoIP + "文件夹下。")
-		fmt.Println("[*]命名为 City.mmdb，Country.mmdb，ASN.mmdb。")
 	}
 	return true
 }
