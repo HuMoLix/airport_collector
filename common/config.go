@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	Version = "0.2_release"
+	Version = "1.0.0"
 	Author  = "HuMoLix"
 )
 const Banner = `
