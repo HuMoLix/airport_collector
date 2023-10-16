@@ -116,3 +116,7 @@ $ ./AirPort_Colloctor -P 100
 ## 工具出现问题？
 
 ​	提交ISSUE就好了，有时间的话我肯定更新OvO，这个工具也不需要怎么更新了，大概就是能爬一些节点过来，用于平时的翻墙以及攻防演练。如果需要搬运请向我申请授权，谢谢。
+
+## 致谢
+
+ 感谢[eeeeeeeeee](https://github.com/eeeeeeeeee-code)提供的这么好一个idea，也是借着学习golang就写了这么个工具
