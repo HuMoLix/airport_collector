@@ -5,4 +5,4 @@
 results/*.yaml
 
 # 忽略配置文件
-config.yaml
+*.yaml

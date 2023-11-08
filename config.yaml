@@ -1,9 +1,0 @@
-settings:
-  isBlackList: false
-  license: ""
-fofa:
-  email: 
-  apikey: 
-  query:
-    total_Size: 
-    last_Query_page: 1
