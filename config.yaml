@@ -2,8 +2,8 @@ settings:
   isBlackList: false
   license: ""
 fofa:
-  email:
-  apikey:
+  email: 577896795@qq.com
+  apikey: a59e3e45f5c546918fdf3db752e73914
   query:
-    total_Size: 0
+    total_Size: 527483
     last_Query_page: 1

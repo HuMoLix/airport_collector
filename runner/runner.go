@@ -31,7 +31,6 @@ func Runner(keys []string, Conf *common.Conf, Options *common.ApCOptions) {
 	ch := make(chan []map[string]interface{})
 	wg := &sync.WaitGroup{}
 	for page := Options.QueryStartFrom; page < Options.QueryPageCount+Options.QueryStartFrom; page++ {
-		fmt.Println(page)
 		_, results := fofa.GetAddressList(keys, page)
 		for _, host := range results.Results {
 			wg.Add(1)
