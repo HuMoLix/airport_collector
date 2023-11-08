@@ -51,6 +51,7 @@ type ApCOptions struct {
 	QueryPageCount int
 	QueryStartFrom int
 	HostLocation   string
+	Format         string
 	Runmode        string
 	GeoIP          bool
 }
