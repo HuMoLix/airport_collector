@@ -36,9 +36,13 @@ func Runner(keys []string, Conf *common.Conf, Options *common.ApCOptions) {
 			wg.Add(1)
 			go func(host []string, group *sync.WaitGroup) {
 				defer group.Done()
-				err, data := utils.FormatData(host[1], host[2], Options.GeoIP, &GeoIP)
-				if err && data != nil {
-					ch <- data
+				if Options.HostLocation != "" && utils.GetIpLocationGeoIP(host[1], &GeoIP).Country != Options.HostLocation {
+					bar.Add(1)
+				} else {
+					err, data := utils.FormatData(host[1], host[2], Options.GeoIP, &GeoIP)
+					if err && data != nil {
+						ch <- data
+					}
 				}
 				bar.Add(1)
 			}(host, wg)
