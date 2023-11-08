@@ -61,6 +61,11 @@ func checkXray(ip string, cookie string) bool {
 // 使用 Cookie 获取 vpn 设置
 
 func getBound(ip string, cookie string) []map[string]interface{} {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err, ip)
+		}
+	}()
 	client := resty.New().SetTimeout(common.Timeout)
 	bound := &XUI{}
 	client.R().SetResult(bound).SetHeader("Cookie", "session="+cookie).Post("http://" + ip + "/xui/inbound/list")
@@ -78,7 +83,7 @@ func getBound(ip string, cookie string) []map[string]interface{} {
 			result = ShadowSocks(Settings)
 			bound.Obj[i].Protocol = "ss"
 		case "vmess", "vless":
-			result = Vlmess(Settings, StreamSettings, Protocol)
+			result = Vlmess(Settings, StreamSettings, Protocol, ip)
 		case "http":
 			result = Http(Settings)
 		case "dokodemo-door":
@@ -118,10 +123,10 @@ func ShadowSocks(Settings string) map[string]interface{} {
 	return result
 }
 
-func Vlmess(Settings string, StreamSettings string, Protocol string) map[string]interface{} {
+func Vlmess(Settings string, StreamSettings string, Protocol string, ip string) map[string]interface{} {
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println(err)
+			fmt.Println(err, ip)
 			fmt.Println(Settings, StreamSettings)
 		}
 	}()

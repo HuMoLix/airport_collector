@@ -44,6 +44,8 @@ const (
 
 type ApCOptions struct {
 	QueryPageCount int
+	QueryStartFrom int
+	HostLocation   string
 	Runmode        string
 	GeoIP          bool
 }
