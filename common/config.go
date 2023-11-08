@@ -1,22 +1,26 @@
 package common
 
 import (
+	"encoding/json"
+	"io/ioutil"
+	"os"
 	"time"
 
 	"github.com/oschwald/geoip2-golang"
 )
 
 const (
-	Version = "1.0.0"
-	Author  = "HuMoLix"
+	Author = "HuMoLix"
+	Github = "https://github.com/HuMoLix/airport_collector/"
 )
-const Banner = `
+
+var Banner = `
 █████╗ ██╗██████╗ ██████╗  ██████╗ ██████╗ ████████╗
 ██╔══██╗██║██╔══██╗██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝
 ███████║██║██████╔╝██████╔╝██║   ██║██████╔╝   ██║   
 ██╔══██║██║██╔══██╗██╔═══╝ ██║   ██║██╔══██╗   ██║   
 ██║  ██║██║██║  ██║██║     ╚██████╔╝██║  ██║   ██║   By: ` + Author + `
-╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   Version: ` + Version + `
+╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   Version: ` + GetCurrentVersion() + `
                                                      
 ██████╗ ██████╗ ██╗     ██╗     ███████╗ ██████╗████████╗███████╗██████╗ 
 ██╔════╝██╔═══██╗██║     ██║     ██╔════╝██╔════╝╚══██╔══╝██╔════╝██╔══██╗
@@ -29,6 +33,7 @@ const Banner = `
  开发人员不承担任何责任，也不对任何滥用或损坏负责.                                                                         
 
 `
+
 const (
 	ConfigYaml  = "config.yaml"
 	License     = ".license"
@@ -50,8 +55,11 @@ type ApCOptions struct {
 	GeoIP          bool
 }
 
+type Version struct {
+	Version string `json:"version"` // 版本
+}
+
 type Conf struct {
-	// Version  string   `yaml:"version"`  // 程序版本，用于检查更新
 	Settings Settings `yaml:"settings"` // 全局变量
 	Fofa     FofaConf `yaml:"fofa"`     // Fofa
 }
@@ -98,4 +106,17 @@ type Proxy_Groups struct {
 	Name    string   `yaml:"name"`
 	Type    string   `yaml:"type"`
 	Proxies []string `yaml:"proxies"`
+}
+
+func GetCurrentVersion() string {
+	absPath, _ := os.Getwd()
+	file, err := os.Open(absPath + "\\common\\update\\update_info.json")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	var version Version
+	byteValue, _ := ioutil.ReadAll(file)
+	json.Unmarshal(byteValue, &version)
+	return version.Version
 }

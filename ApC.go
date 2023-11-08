@@ -15,6 +15,7 @@ import (
 func main() {
 	var Config common.Conf
 	var Options common.ApCOptions
+	// update.ValidVersion()           // 检查版本
 	common.Flag(&Options)           // 解析命令行参数
 	utils.IsInit(&Config)           // 检查是否初始化
 	utils.IsGeoIP(&Options)         // 检查是否使用GeoIP库
