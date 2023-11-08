@@ -1,0 +1,8 @@
+# 忽略缓存文件
+.DS_Store
+
+# 忽略测试文件
+results/*.yaml
+
+# 忽略配置文件
+config.yaml
